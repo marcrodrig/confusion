@@ -8,6 +8,7 @@ var FileStore = require('session-file-store')(session);
 var passport = require('passport');
 var authenticate = require('./authenticate');
 var config = require('./config');
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -29,6 +30,8 @@ connect.then((db) => {
 }, (err) => { console.log(err); });
 
 var app = express();
+
+app.use(cors());
 
 // Secure traffic only
 app.all('*', (req, res, next) => {
